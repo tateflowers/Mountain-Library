@@ -74,4 +74,15 @@ function findMountainSuccessRateIn2004(mountain){
 }
 // console.log(findMountainSuccessRateIn2004("K2"));
 
-function findParentMountain(mountain){}
+function findParentMountain(mountain){
+    var matchingMts = []
+    for(var i = 0; i < mountainName.length; i++)
+        if(mountainName[i].toLowerCase() == mountain.toLowerCase()){
+            matchingMts.push(mountainParent[i])
+        }
+        if(matchingMts == 0){
+            return "Invalid Input"
+        }
+        return matchingMts
+}
+// console.log(findParentMountain("kangchenjunga"));
