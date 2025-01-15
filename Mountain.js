@@ -34,8 +34,44 @@ for(var i = 0; i < mountainHeight.length; i++){
 }
 console.log(findMountainsWithHeight(7300, 7500))
 
-function findMountainsInCountry(country){}
+function findMountainsInCountry(country){
+    var MountainCountry = [];
+    for (var i = 0; i < mountainCountry.length; i++){
+        if (mountainCountry[i].toLowerCase().includes(country.toLowerCase())) MountainCountry.push(mountainName[i]);
+    }
+    console.log(typeof country);
+    return MountainCountry;
+}
+// console.log(findMountainsInCountry("Nepal")); 
 
-function findMountainSuccessRateIn2004(mountain){}
+function findMountainSuccessRateIn2004(mountain){
+    for (var i = 0; i < mountainName.length; i++){
+        if (mountain == mountainName[i]){
+            var openbracket = mountainAscents[i].indexOf("(");
+            var closebracket = mountainAscents[i].indexOf(")");
+            var attempted = 0;
+            var failed = 0;
+            for (var j = 0; j < openbracket-1; j++){
+                attempted *= 10;
+                attempted += parseInt(mountainAscents[i][j]);
+            }
+            for (var j = openbracket+1; j < closebracket; j++){
+                failed *= 10;
+                failed += parseInt(mountainAscents[i][j]);
+            }
+            console.log(attempted);
+            return failed;
+            // console.log(mountainAscents[i].split(" "));
+
+
+
+            // console.log(openbracket);
+            // console.log(closebracket);
+            // return mountainAscents[i];
+
+        }
+    }
+}
+// console.log(findMountainSuccessRateIn2004("K2"));
 
 function findParentMountain(mountain){}
