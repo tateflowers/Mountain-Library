@@ -6,6 +6,10 @@ var mountainParent = getColumn(url, 8);
 var mountainAscents = getColumn(url, 10);
 var mountainCountry = getColumn(url, 11);
 
+// This function takes a range and returns mountains in the range
+// range{string} - a specific mountain range 
+// return{list} - returns the mountains(in the data set)
+
 function findMountainsInRange(range){
 
 var matchingMts = [];
@@ -21,6 +25,12 @@ for(var i = 0; i < mountainRange.length; i++){
     return matchingMts;
 }
 console.log(findMountainsInRange("baltoro karakoram"));
+
+// This gives mountains within two heights
+// unit{string} - sets search to specific unit 
+// minHeight{number} - lowest height to search
+// maxHeight{number} - highest height to search
+// return{list} - returns the mountains in the height range
 
 function findMountainsWithHeight(unit, minHeight, maxHeight){
     var matchingMts = [];
@@ -49,6 +59,10 @@ else if(unit == "feet" || unit == "ft"){
 
 }
 console.log(findMountainsWithHeight("ft",24000,25000));
+
+// This finds mountains in a country
+// country{string} - a specific mountain country 
+// return{list} - returns the mountains in the country
 
 function findMountainsInCountry(country){
     var MountainCountry = [];
