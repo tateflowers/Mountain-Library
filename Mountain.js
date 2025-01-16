@@ -60,6 +60,9 @@ function findMountainsInCountry(country){
 }
 // console.log(findMountainsInCountry("Nepal")); 
 
+//Find the success ascents rate of a mountain in 2004
+//mountain {string} - the name of the mountain
+// return {number} - the success ascents rate of that mountain in 2004
 function findMountainSuccessRateIn2004(mountain){
     for (var i = 0; i < mountainName.length; i++){
         if (mountainName[i].toLowerCase().includes(mountain.toLowerCase())){
@@ -84,7 +87,9 @@ function findMountainSuccessRateIn2004(mountain){
 
 // console.log(findMountainSuccessRateIn2004("bEi pK"));
 
-
+//Finds the parent mountain of the mountain
+//mountain {string} - the name of the mountain
+//return {list} - a list of parent mountains of the mountain
 function findParentMountain(mountain){
     matchingMts = [];
     for(var i = 0; i < mountainName.length; i++){
