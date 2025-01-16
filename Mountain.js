@@ -62,43 +62,36 @@ function findMountainsInCountry(country){
 
 function findMountainSuccessRateIn2004(mountain){
     for (var i = 0; i < mountainName.length; i++){
-        if (mountain == mountainName[i]){
+        if (mountainName[i].toLowerCase().includes(mountain.toLowerCase())){
             var openbracket = mountainAscents[i].indexOf("(");
             var closebracket = mountainAscents[i].indexOf(")");
-            var attempted = 0;
+            var success = 0;
             var failed = 0;
             for (var j = 0; j < openbracket-1; j++){
-                attempted *= 10;
-                attempted += parseInt(mountainAscents[i][j]);
+                success *= 10;
+                success += parseInt(mountainAscents[i][j]);
             }
             for (var j = openbracket+1; j < closebracket; j++){
                 failed *= 10;
                 failed += parseInt(mountainAscents[i][j]);
-            }
-            console.log(attempted);
-            return (attempted-failed)/attempted;
-            // console.log(mountainAscents[i].split(" "));
-
-
-
-            // console.log(openbracket);
-            // console.log(closebracket);
-            // return mountainAscents[i];
-
+            }   
+            if (success+failed == 0) return 0;
+            return success/(success+failed);
         }
     }
+    return -1;
 }
-// console.log(findMountainSuccessRateIn2004("K2"));
+
+// console.log(findMountainSuccessRateIn2004("bEi pK"));
+
 
 function findParentMountain(mountain){
-    var matchingMts = []
-    for(var i = 0; i < mountainName.length; i++)
-        if(mountainName[i].toLowerCase() == mountain.toLowerCase()){
-            matchingMts.push(mountainParent[i])
+    matchingMts = [];
+    for(var i = 0; i < mountainName.length; i++){
+        if(mountainName[i].toLowerCase().includes(mountain.toLowerCase())){
+            matchingMts.push(mountainParent[i]);
         }
-        if(matchingMts == 0){
-            return "Invalid Input"
-        }
-        return matchingMts
+    }
+    if (matchingMts.length == 0) return "No matching mountain";
+    return matchingMts;
 }
-// console.log(findParentMountain("kangchenjunga"));
