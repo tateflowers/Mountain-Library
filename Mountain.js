@@ -105,7 +105,7 @@ function findMountainSuccessRateIn2004(mountain){
 //mountain {string} - the name of the mountain
 //return {list} - a list of parent mountains of the mountain
 function findParentMountain(mountain){
-    matchingMts = [];
+    var matchingMts = [];
     for(var i = 0; i < mountainName.length; i++){
         if(mountainName[i].toLowerCase().includes(mountain.toLowerCase())){
             matchingMts.push(mountainParent[i]);
@@ -114,3 +114,5 @@ function findParentMountain(mountain){
     if (matchingMts.length == 0) return "No matching mountain";
     return matchingMts;
 }
+
+console.log(findParentMountain("gasherbrum"));
