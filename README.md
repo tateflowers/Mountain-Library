@@ -1,5 +1,8 @@
 #Mountain Library
 The function findMountainsInRange(range) return all the name of the mountains in the given range
+##### Return all the name of the mountains in the given range
+###### @param range {string} - the name of the range
+###### @return {list} - all the mountain that is in this range
 **`function findMountainsInRange(range)`**
 #
 
