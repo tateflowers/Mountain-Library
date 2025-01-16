@@ -22,17 +22,33 @@ for(var i = 0; i < mountainRange.length; i++){
 }
 console.log(findMountainsInRange("baltoro karakoram"));
 
-function findMountainsWithHeight(minHeight, maxHeight){
+function findMountainsWithHeight(unit, minHeight, maxHeight){
     var matchingMts = [];
-
-for(var i = 0; i < mountainHeight.length; i++){
-    if(mountainHeight[i] >= minHeight || mountainHeight[i] <= maxHeight){
-        matchingMts.push(mountainName[i]);
+if(unit ==  "meter" || unit == "m"){
+    for(var i = 0; i < mountainHeight.length; i++){
+        if(mountainHeight[i] >= minHeight && mountainHeight[i] <= maxHeight){
+            matchingMts.push(mountainName[i]);
+        }
     }
+        if(matchingMts == 0){
+            return "No Mountains in Specified Height/Try a different value"
+        }
+        return matchingMts;
 }
-    return matchingMts;
+else if(unit == "feet" || unit == "ft"){
+    for(var i = 0; i < mountainHeightft.length; i++){
+        if(mountainHeightft[i] >= minHeight && mountainHeightft[i] <= maxHeight){
+            matchingMts.push(mountainName[i]);
+        }
+    }
+        if(matchingMts == 0){
+            return "No Mountains in Specified Height/Try a different value"
+        }
+        return matchingMts;
 }
-console.log(findMountainsWithHeight(7300, 7500))
+
+}
+console.log(findMountainsWithHeight("ft",24000,25000));
 
 function findMountainsInCountry(country){
     var MountainCountry = [];
