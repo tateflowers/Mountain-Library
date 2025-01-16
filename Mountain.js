@@ -60,7 +60,7 @@ function findMountainSuccessRateIn2004(mountain){
                 failed += parseInt(mountainAscents[i][j]);
             }
             console.log(attempted);
-            return failed;
+            return (attempted-failed)/attempted;
             // console.log(mountainAscents[i].split(" "));
 
 
