@@ -1,30 +1,32 @@
 var url = "https://raw.githubusercontent.com/b-mcavoy/datasets/refs/heads/main/Geography/World's%20Tallest%20Mountains.csv";
 var mountainName = getColumn(url, 2);
 var mountainHeight = getColumn(url, 3);
+var mountainHeightft = getColumn(url, 4);
 var mountainRange = getColumn(url, 6);
 var mountainParent = getColumn(url, 8);
 var mountainAscents = getColumn(url, 10);
 var mountainCountry = getColumn(url, 11);
+
 
 // This function takes a range and returns mountains in the range
 // range{string} - a specific mountain range 
 // return{list} - returns the mountains(in the data set)
 
 function findMountainsInRange(range){
-
 var matchingMts = [];
 
 for(var i = 0; i < mountainRange.length; i++){
+    
     if(mountainRange[i].toLowerCase().includes(range.toLowerCase())){
         matchingMts.push(mountainName[i]);
     }
 }
     if(matchingMts.length == 0){
-    matchingMts.push("No Mountains In Range")
+    return "No Mountains In Range"
 }
     return matchingMts;
 }
-console.log(findMountainsInRange("baltoro karakoram"));
+console.log(findMountainsInRange("("));
 
 // This gives mountains within two heights
 // unit{string} - sets search to specific unit 
@@ -58,7 +60,7 @@ else if(unit == "feet" || unit == "ft"){
 }
 
 }
-console.log(findMountainsWithHeight("ft",24000,25000));
+console.log(findMountainsWithHeight("ft",7000,7200));
 
 // This finds mountains in a country
 // country{string} - a specific mountain country 
@@ -69,41 +71,54 @@ function findMountainsInCountry(country){
     for (var i = 0; i < mountainCountry.length; i++){
         if (mountainCountry[i].toLowerCase().includes(country.toLowerCase())) MountainCountry.push(mountainName[i]);
     }
-    console.log(typeof country);
+    if(MountainCountry == 0){
+        return "Country Invalid"
+    }
     return MountainCountry;
 }
-// console.log(findMountainsInCountry("Nepal")); 
+console.log(findMountainsInCountry("ajikis")); 
 
 //Find the success ascents rate of a mountain in 2004
 //mountain {string} - the name of the mountain
 // return {number} - the success ascents rate of that mountain in 2004
+
 function findMountainSuccessRateIn2004(mountain){
     for (var i = 0; i < mountainName.length; i++){
-        if (mountainName[i].toLowerCase().includes(mountain.toLowerCase())){
+        if (mountain.toLowerCase() == mountainName[i].toLowerCase()){
             var openbracket = mountainAscents[i].indexOf("(");
             var closebracket = mountainAscents[i].indexOf(")");
-            var success = 0;
+            var attempted = 0;
             var failed = 0;
             for (var j = 0; j < openbracket-1; j++){
-                success *= 10;
-                success += parseInt(mountainAscents[i][j]);
+                attempted *= 10;
+                attempted += parseInt(mountainAscents[i][j]);
             }
             for (var j = openbracket+1; j < closebracket; j++){
                 failed *= 10;
                 failed += parseInt(mountainAscents[i][j]);
-            }   
-            if (success+failed == 0) return 0;
-            return success/(success+failed);
+            }
+        
+            return (attempted-failed)/attempted;
         }
     }
     return -1;
 }
+console.log(findMountainSuccessRateIn2004("K3"));
 
-// console.log(findMountainSuccessRateIn2004("bEi pK"));
+// Finds the parent mountain of the mountain
+// mountain {string} - the name of the mountain
+// return {list} - a list of parent mountains of the mountain
 
-//Finds the parent mountain of the mountain
-//mountain {string} - the name of the mountain
-//return {list} - a list of parent mountains of the mountain
+function findParentMountain(mountain){
+    for(var i = 0; i < mountainName.length; i++){
+        if(mountainName[i].toLowerCase() == mountain.toLowerCase()){
+            return mountainParent[i]
+        }
+    }
+            return "Invalid Input"
+}
+console.log(findParentMountain("kangchenjunga"));
+
 function findParentMountain(mountain){
     var matchingMts = [];
     for(var i = 0; i < mountainName.length; i++){
